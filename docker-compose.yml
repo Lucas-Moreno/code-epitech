@@ -1,0 +1,12 @@
+version: '3'
+services:
+  nodejs-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: mon-api-nodejs
+    container_name: nodejs-app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
