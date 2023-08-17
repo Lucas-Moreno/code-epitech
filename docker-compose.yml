@@ -2,7 +2,7 @@ version: '3'
 services:
   nodejs-app:
     build:
-      context: .
+      context: ./back
       dockerfile: Dockerfile
     image: mon-api-nodejs
     container_name: nodejs-app
