@@ -4,17 +4,24 @@ import { Request, Response } from '../types/types'
 import UserModel from '../models/user.models'
 import bcrypt from 'bcryptjs'
 
-
 export const signup = async (req: Request, res: Response) => {
   try {
     const { name, email, password } = req.body;
 
-    const existingUser = await UserModel.findOne({ email })
+    const existingUser = await UserModel.findOne({ email });
     if (existingUser) {
-      throw new Error('This email address is already registered')
+      return res.status(400).json({ message: 'This email address is already registered' });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10)
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordRegex.test(password)) {
+      return res.status(400).json({
+        message:
+          'Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.',
+      });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = new UserModel({ name, email, password: hashedPassword });
 
@@ -22,9 +29,9 @@ export const signup = async (req: Request, res: Response) => {
 
     const newUserId = newUser._id;
 
-    res.status(201).json({ message: 'User saved with success', id: newUserId, success: true });
-
+    res.status(201).json({ message: 'User registered successfully', id: newUserId, success: true });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: 'Error registering user' });
   }
 };
@@ -40,7 +47,7 @@ export const signin = async (req: Request, res: Response) => {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
-    const secret: Secret = process.env.JWT_SECRET!
+    const secret: Secret = process.env.JWT_SECRET! 
 
     const token = jwt.sign({ id: user._id, email: user.email }, secret, { expiresIn: '1h' });
     res.cookie('jwt', token, { httpOnly: true, maxAge: 3600000 });
