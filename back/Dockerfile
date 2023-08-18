@@ -16,7 +16,7 @@ RUN npm install -g ts-node
 COPY . .
 
 # Expose le port sur lequel l'application va écouter
-EXPOSE 3000
+EXPOSE 3001
 
 # Commande de démarrage de l'application
 CMD [ "ts-node", "index.ts" ]

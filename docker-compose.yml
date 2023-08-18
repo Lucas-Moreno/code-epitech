@@ -1,12 +1,30 @@
 version: '3'
 services:
-  nodejs-app:
+  
+  back:
+    image: node:18
+    container_name: back
     build:
       context: ./back
       dockerfile: Dockerfile
-    image: mon-api-nodejs
-    container_name: nodejs-app
+    environment:
+      NODE_ENV: development
+    ports:
+      - "3001:3001"
+    networks:
+      - my-network
+
+  front:
+    image: node:18
+    container_name: front
+    build:
+      context: ./front
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
-    environment:
-      - NODE_ENV=production
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
