@@ -10,7 +10,7 @@ interface CustomAlertProps {
     autoHideDuration?: number;
 }
 
-export default function AlertMessage({ open, onClose, message, severity, autoHideDuration = 3000,}: CustomAlertProps) {
+export default function Alertmessage({ open, onClose, message, severity, autoHideDuration = 3000,}: CustomAlertProps) {
   return (
     <Snackbar open={open} autoHideDuration={autoHideDuration} onClose={onClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}>
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>

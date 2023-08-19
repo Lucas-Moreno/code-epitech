@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Container, Typography, Button, TextField, AlertColor } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { signup } from '../services/authService';
-import AlertMessage from '../components/AlertMessage';
+import AlertMessage from '../components/Alertmessage';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
