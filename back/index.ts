@@ -6,6 +6,7 @@ import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import "./src/models/db"
 import { Express } from './src/types/types'
+import cors from 'cors'
 
 dotenv.config()
 
@@ -15,6 +16,8 @@ const app: Express = express()
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(cors());
+
 
 app.use(cookieParser()) 
 
