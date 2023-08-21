@@ -8,10 +8,13 @@ export interface Express {
     post: (path?: string, params?: any) => void
   }
   
+
+
   export interface Request {
     cookies?: Cookies
     user?: any
     body?: any
+    headers? : any
   }
   
   export interface Response {

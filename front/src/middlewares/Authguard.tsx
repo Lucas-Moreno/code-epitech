@@ -7,9 +7,10 @@ const Authguard = ({ element }: { element: React.ReactElement }) => {
 
   if (token) {
     return element;
+  } else {
+    return <Navigate to="/signin" />;
   }
 
-  return <Navigate to="/signin" />;
 };
 
 export default Authguard;

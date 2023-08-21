@@ -1,7 +1,19 @@
 import { Container, Typography, Box, Button, AppBar, Toolbar } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { logout } from '../services/authService';
 
 export default function HomePage() {
+
+  const handleLogout = async (event: React.FormEvent) => {
+    event.preventDefault();
+    try {
+      await logout();
+    } catch (error: any) {
+      const { message } = JSON.parse(error.response.request.response)
+      console.log(message)
+    }
+  };
+
   return (
     <Container maxWidth="md" style={{ overflow: 'hidden' }}>
       <AppBar position="fixed" style={{ width: '100vw' }}>
@@ -10,11 +22,8 @@ export default function HomePage() {
             Mon Site
           </Typography>
           <div>
-            <Button component={Link} to="/signup" color="inherit" style={{ marginRight: '16px' }}>
-              Inscription
-            </Button>
-            <Button component={Link} to="/signin" color="inherit">
-              Connexion
+            <Button onClick={handleLogout} color="inherit" style={{ marginRight: '16px' }}>
+              Déconnexion
             </Button>
           </div>
         </Toolbar>

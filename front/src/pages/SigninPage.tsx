@@ -30,15 +30,14 @@ export default function SigninPage() {
     }));
   };
 
-  const handleSignup = async (event: React.FormEvent) => {
+  const handleSignin = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
       const data = await signin(formData);
-      localStorage.setItem("token", data.token);
       setAlertSeverity('success');
       setAlertMessage('Connexion réussie !');
       setShowAlert(true);
-      navigate('/');
+      if (data.token) navigate('/');
     } catch (error: any) {
       const { message } = JSON.parse(error.response.request.response)
       setAlertSeverity('error');
@@ -91,7 +90,7 @@ export default function SigninPage() {
           color="primary"
           fullWidth
           style={{ marginTop: '16px' }}
-          onClick={handleSignup}
+          onClick={handleSignin}
         >
           Se connecter
         </Button>

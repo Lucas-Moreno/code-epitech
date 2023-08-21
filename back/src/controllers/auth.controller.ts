@@ -65,7 +65,7 @@ export const signin = async (req: Request, res: Response) => {
 
 export const logout = async (req: Request, res: Response) => {
 
-  if (!req.cookies || !req.cookies.jwt) {
+  if (!req.headers || !req.headers.authorization) {
     return res.status(401).json({ message: "You are not connected" });
   }
 

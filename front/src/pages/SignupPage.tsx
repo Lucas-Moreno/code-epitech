@@ -44,7 +44,6 @@ export default function SignupPage() {
       setAlertSeverity('error');
       setAlertMessage(message);
       setShowAlert(true);
-      console.error('Erreur lors de l\'inscription :', error);
     }
   };
 
