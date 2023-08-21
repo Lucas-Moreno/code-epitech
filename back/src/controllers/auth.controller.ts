@@ -43,7 +43,11 @@ export const signin = async (req: Request, res: Response) => {
 
     const user = await UserModel.findOne({ email });
 
-    if (!user || !user.isPasswordCorrect(password)) {
+    let isPasswordCorrect: boolean = false
+
+    if (user) isPasswordCorrect = await user.isPasswordCorrect(password);
+
+    if (!user || isPasswordCorrect != true) {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
