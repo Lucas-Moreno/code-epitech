@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Typography, Button, TextField, AlertColor } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { signup } from '../services/authService';
 import AlertMessage from '../components/Alertmessage';
 import IconButton from '@mui/material/IconButton';
@@ -105,6 +105,12 @@ export default function SignupPage() {
           S'inscrire
         </Button>
       </form>
+      <Typography align="center" style={{ marginTop: '16px' }}>
+        Déjà un compte ?{' '}
+        <Link to="/signin">
+          Se connecter
+        </Link>
+      </Typography>
       <AlertMessage
         open={showAlert}
         onClose={() => setShowAlert(false)}
