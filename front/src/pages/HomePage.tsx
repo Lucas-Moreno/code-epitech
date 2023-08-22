@@ -8,6 +8,7 @@ export default function HomePage() {
     event.preventDefault();
     try {
       await logout();
+      window.location.reload()
     } catch (error: any) {
       const { message } = JSON.parse(error.response.request.response)
       console.log(message)
