@@ -34,6 +34,5 @@ export interface Express {
   }
   
   export interface DurationCookie {
-    httpOnly: boolean
     maxAge: number
   }

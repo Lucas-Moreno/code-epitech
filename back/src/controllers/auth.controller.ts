@@ -51,10 +51,10 @@ export const signin = async (req: Request, res: Response) => {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
-    const secret: Secret = process.env.JWT_SECRET! 
+    const secret: Secret = process.env.JWT_SECRET!
 
     const token = jwt.sign({ id: user._id, email: user.email }, secret, { expiresIn: '1h' });
-    res.cookie('jwt', token, { httpOnly: true, maxAge: 3600000 });
+    res.cookie('jwt', token, { maxAge: 3600000 });
     res.status(200).json({ email: user.email, token });
 
   } catch (error) {
@@ -65,7 +65,7 @@ export const signin = async (req: Request, res: Response) => {
 
 export const logout = async (req: Request, res: Response) => {
 
-  if (!req.headers || !req.headers.authorization) {
+  if (!req.cookies || !req.cookies.jwt) {
     return res.status(401).json({ message: "You are not connected" });
   }
 
