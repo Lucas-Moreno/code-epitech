@@ -1,19 +1,23 @@
 import jwt, { Secret } from 'jsonwebtoken';
 import process from 'process'
-import { Request, Response } from '../types/types'
-import UserModel from '../models/user.models'
+import { Request, Response } from '@/types/types'
+import UserModel from '@/models/user.models'
 import bcrypt from 'bcryptjs'
+import { emailRegex, passwordRegex } from '@/utils/regexUtils'
 
 export const signup = async (req: Request, res: Response) => {
   try {
     const { name, email, password } = req.body;
 
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ message: 'Invalid email format' });
+    }
+
     const existingUser = await UserModel.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: 'This email address is already registered' });
-    }
+    } 
 
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if (!passwordRegex.test(password)) {
       return res.status(400).json({
         message:

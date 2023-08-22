@@ -39,6 +39,7 @@
     "@types/cookie-parser": "^1.4.3",
     "@types/cors": "^2.8.13",
     "@types/dotenv": "^8.2.0",
-    "@types/mongoose": "^5.11.97"
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^20.5.2"
   }
 }

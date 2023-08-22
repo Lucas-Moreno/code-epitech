@@ -1,8 +1,8 @@
 import jwt, { Secret } from 'jsonwebtoken';
 import process from 'process';
 import { NextFunction } from 'express';
-import UserModel from '../models/user.models';
-import { Request, Response } from '../types/types'
+import UserModel from '@/models/user.models';
+import { Request, Response } from '@/types/types'
 interface JwtPayload {
   id: string;
 }
