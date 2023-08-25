@@ -1,9 +1,9 @@
 import jwt, { Secret } from 'jsonwebtoken';
 import process from 'process'
-import { Request, Response } from '@/types/types'
-import UserModel from '@/models/user.models'
+import { Request, Response } from '../types/types'
+import UserModel from '../models/user.models'
 import bcrypt from 'bcryptjs'
-import { emailRegex, passwordRegex } from '@/utils/regexUtils'
+import { emailRegex, passwordRegex } from '../utils/regexUtils'
 
 export const signup = async (req: Request, res: Response) => {
   try {

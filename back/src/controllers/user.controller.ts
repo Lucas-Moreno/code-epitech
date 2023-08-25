@@ -1,4 +1,4 @@
-import { Request, Response } from '@/types/types'
+import { Request, Response } from '../types/types'
 
 
 export const getInfoUser = async (req: Request, res: Response) => {

@@ -1,11 +1,11 @@
 import express from 'express'
 import process from 'process'
 import dotenv from 'dotenv'
-import router from "@/routes/routes"
+import router from "./src/routes/routes"
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
-import "@/models/db"
-import { Express } from '@/types/types'
+import "./src/models/db"
+import { Express } from './src/types/types'
 import cors from 'cors'
 
 dotenv.config()
